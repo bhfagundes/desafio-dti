@@ -15,3 +15,5 @@
 Route::get('/', function () {
     return response()->json(['message' => 'Jobs API', 'status' => 'Connected']);;
 });
+
+Route::post('/game','GameController@start'); 
