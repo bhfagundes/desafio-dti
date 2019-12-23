@@ -17,3 +17,4 @@ Route::get('/', function () {
 });
 
 Route::post('/game','GameController@start'); 
+Route::post('/game/{id}/movement','GameController@movement');
