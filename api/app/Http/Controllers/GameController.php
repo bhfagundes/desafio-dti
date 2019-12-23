@@ -177,32 +177,27 @@ class GameController extends Controller
     }
     public function verificaGanhador($matriz, $nLinhas)
     {
-    
+       
         $linhas = $this->verificaLinhas($matriz);
         $colunas = $this->verificaColunas($matriz);
-        $diagonais =$this->VerificaDiagonais($matriz);
+        $diagonais =$this->VerificaDiagonais($matriz);   
         if($linhas == 'X' || $colunas == 'X' || $diagonais== 'X')
         {
-            $msg['status']="Partida finalizada";
-            $msg['winner']="X";
-            return  response()->json($msg);  
+            return response()->json(['status' => 'Partida finalizada', 'winner' => 'X']); 
         }
         else if($linhas == 'O' || $colunas == 'O' || $diagonais== 'O')
         {
-            $msg['status']="Partida finalizada";
-            $msg['winner']="O";
-            return  response()->json($msg);  
+            return response()->json(['status' => 'Partida finalizada', 'winner' => 'O'],200);
         }
         else if($nLinhas>17)
         {
-            $msg['status']="Partida finalizada";
-            $msg['winner']="Draw";
-            return  response()->json($msg);    
+            return response()->json(['status' => 'Partida finalizada', 'winner' => 'Draw']);  
         }
         else
         {
             return response()->json( 200);
         }
+
     }
     public function checarResultado($id)
     {
@@ -220,8 +215,9 @@ class GameController extends Controller
         else
         {
             $matriz = $this->montarMatrizJogadas($contents);
-            $verificarGanhador= $this->verificaGanhador($matriz,$nLinhas);
+            return  $verificarGanhador= $this->verificaGanhador($matriz,$nLinhas);
         }        
+
     }
     public function movement($id)
     {

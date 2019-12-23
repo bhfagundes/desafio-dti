@@ -16,5 +16,5 @@ use Illuminate\Http\Request;
 
 
 Route::get('/', function () {
-    return response()->json(['message' => 'Jobs API', 'status' => 'Connected']);;
+    return response()->json(['message' => 'Jobs API', 'status' => 'Connected']);
 });
