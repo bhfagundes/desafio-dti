@@ -38,6 +38,7 @@ class GameController extends Controller
         $sessao = $this->iniciarTabuleiro($jogador);
         $retorno['firstPlayer']=$jogador;
         $retorno['id']=$sessao;
+        return response()->json(['id' => $sessao,'firstPlayer'=>$jogador] ,200);
         return json_encode($retorno);
     }
     public function lerArquivo($id)
@@ -222,6 +223,12 @@ class GameController extends Controller
     public function movement($id)
     {
         $parametros = Request()->all();
+        if ($parametros['player'] == null || $parametros['id'] == null || $parametros['position']['x'] ==null
+            ||$parametros['position']['y'] == null)
+        {
+            $msg="Número de parâmetros inválido!";
+            return  response()->json($msg); 
+        }
         /* Definindo como regra, sempre a primeira linha será o ultimo jogador que movimentou*/
         if (Storage::exists($id.'.txt'))
         {
