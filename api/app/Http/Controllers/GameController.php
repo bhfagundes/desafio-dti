@@ -39,7 +39,6 @@ class GameController extends Controller
         $retorno['firstPlayer']=$jogador;
         $retorno['id']=$sessao;
         return response()->json(['id' => $sessao,'firstPlayer'=>$jogador] ,200);
-        return json_encode($retorno);
     }
     public function lerArquivo($id)
     {
